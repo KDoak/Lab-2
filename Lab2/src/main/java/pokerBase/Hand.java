@@ -72,15 +72,27 @@ public class Hand {
 	}
 
 	public static boolean isHandRoyalFlush(Hand h, HandScore hs) {
-
+		Card card = new Card();
 		boolean isRoyalFlush = false;
-		// TODO Implement this method
+		if ((isHandFlush(h.getCardsInHand())) && (isHandStraight(h.getCardsInHand(), card))) {
+			if (card.geteRank() == eRank.ACE) {
+				isRoyalFlush = true;
+				hs.setHandStrength(eHandStrength.RoyalFlush.getHandStrength());
+				hs.setHiHand(h.getCardsInHand().get(eCardNo.FirstCard.getCardNo()).geteRank().getiRankNbr());
+				hs.setLoHand(0);
+			}
+		}
 		return isRoyalFlush;
 	}
 
 	public static boolean isHandStraightFlush(Hand h, HandScore hs) {
+		Card card = new Card();
 		boolean isRoyalFlush = false;
-		// TODO Implement this method
+		if ((isHandFlush(h.getCardsInHand())) && (isHandStraight(h.getCardsInHand(), card))) {
+			isRoyalFlush = true;
+			hs.setHandStrength(eHandStrength.StraightFlush.getHandStrength());
+			hs.setHiHand(h.getCardsInHand().get(eCardNo.FirstCard.getCardNo()).geteRank().getiRankNbr());
+			hs.setLoHand(0);}
 		return isRoyalFlush;
 	}
 
