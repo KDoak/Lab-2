@@ -17,7 +17,6 @@ public class Hand {
 
 	private static boolean isHandFlush(ArrayList<Card> cards) {
 
-		
 		boolean bIsFlush = false;
 		return bIsFlush;
 	}
@@ -73,7 +72,29 @@ public class Hand {
 	public static boolean isHandFullHouse(Hand h, HandScore hs) {
 
 		boolean isFullHouse = false;
-		// TODO Implement this method
+		if (h.getCardsInHand().get(eCardNo.FirstCard.getCardNo()).geteRank() == h.getCardsInHand()
+				.get(eCardNo.SecondCard.getCardNo()).geteRank()
+				&& (h.getCardsInHand().get(eCardNo.ThirdCard.getCardNo()).geteRank() == h.getCardsInHand()
+						.get(eCardNo.FourthCard.getCardNo()).geteRank()
+						&& h.getCardsInHand().get(eCardNo.ThirdCard.getCardNo()).geteRank() == h.getCardsInHand()
+								.get(eCardNo.FifthCard.getCardNo()).geteRank())) {
+			isFullHouse = true;
+			hs.setHandStrength(eHandStrength.FullHouse.getHandStrength());
+			hs.setHiHand(h.getCardsInHand().get(eCardNo.FirstCard.getCardNo()).geteRank().getiRankNbr());
+			hs.setLoHand(0);
+
+		} else if (h.getCardsInHand().get(eCardNo.FourthCard.getCardNo()).geteRank() == h.getCardsInHand()
+				.get(eCardNo.FifthCard.getCardNo()).geteRank()
+				&& (h.getCardsInHand().get(eCardNo.FirstCard.getCardNo()).geteRank() == h.getCardsInHand()
+						.get(eCardNo.SecondCard.getCardNo()).geteRank()
+						&& h.getCardsInHand().get(eCardNo.FirstCard.getCardNo()).geteRank() == h.getCardsInHand()
+								.get(eCardNo.ThirdCard.getCardNo()).geteRank())) {
+			isFullHouse = true;
+			hs.setHandStrength(eHandStrength.FullHouse.getHandStrength());
+			hs.setHiHand(h.getCardsInHand().get(eCardNo.FourthCard.getCardNo()).geteRank().getiRankNbr());
+			hs.setLoHand(0);
+
+		}
 		return isFullHouse;
 
 	}
@@ -81,14 +102,35 @@ public class Hand {
 	public static boolean isHandFlush(Hand h, HandScore hs) {
 
 		boolean bIsFlush = false;
-		// TODO Implement this method
+		if ((h.getCardsInHand().get(eCardNo.FirstCard.getCardNo()).geteSuit() == h.getCardsInHand()
+				.get(eCardNo.SecondCard.getCardNo()).geteSuit())
+				&& (h.getCardsInHand().get(eCardNo.FirstCard.getCardNo()).geteSuit() == h.getCardsInHand()
+						.get(eCardNo.ThirdCard.getCardNo()).geteSuit())
+				&& (h.getCardsInHand().get(eCardNo.FirstCard.getCardNo()).geteSuit() == h.getCardsInHand()
+						.get(eCardNo.FourthCard.getCardNo()).geteSuit())
+				&& (h.getCardsInHand().get(eCardNo.FirstCard.getCardNo()).geteSuit() == h.getCardsInHand()
+						.get(eCardNo.FifthCard.getCardNo()).geteSuit())) {
+			bIsFlush = true;
+			hs.setHandStrength(eHandStrength.Flush.getHandStrength());
+			hs.setHiHand(h.getCardsInHand().get(eCardNo.FifthCard.getCardNo()).geteRank().getiRankNbr());
+			hs.setLoHand(0);
+		}
 		return bIsFlush;
 	}
 
 	public static boolean isHandStraight(Hand h, HandScore hs) {
 
 		boolean bIsStraight = false;
-		// TODO Implement this method
+		if (h.getCardsInHand().get(eCardNo.FirstCard.getCardNo()).geteRank() < h.getCardsInHand()
+				.get(eCardNo.SecondCard.getCardNo()).geteRank() < h.getCardsInHand().get(eCardNo.ThirdCard.getCardNo())
+						.geteRank() < h.getCardsInHand().get(eCardNo.FourthCard.getCardNo()).geteRank() < h
+								.getCardsInHand().get(eCardNo.FifthCard.getCardNo()).geteRank()) {
+			bIsStraight = true;
+			hs.setHandStrength(eHandStrength.Straight.getHandStrength());
+			hs.setHiHand(h.getCardsInHand().get(eCardNo.FifthCard.getCardNo()).geteRank().getiRankNbr());
+			hs.setLoHand(0);
+		}
+
 		return bIsStraight;
 	}
 
@@ -217,13 +259,13 @@ public class Hand {
 
 	public static boolean isHandHighCard(Hand h, HandScore hs) {
 		if ((h.getCardsInHand().get(eCardNo.FirstCard.getCardNo()).geteRank() != h.getCardsInHand()
-				.get(eCardNo.SecondCard.getCardNo()).geteRank()) && 
-				(h.getCardsInHand().get(eCardNo.FirstCard.getCardNo()).geteRank() != h.getCardsInHand()
-				.get(eCardNo.ThirdCard.getCardNo()).geteRank()) &&
-				(h.getCardsInHand().get(eCardNo.FirstCard.getCardNo()).geteRank() != h.getCardsInHand()
-				.get(eCardNo.FourthCard.getCardNo()).geteRank()) &&
-				(h.getCardsInHand().get(eCardNo.FirstCard.getCardNo()).geteRank() != h.getCardsInHand()
-				.get(eCardNo.FifthCard.getCardNo()).geteRank())) {
+				.get(eCardNo.SecondCard.getCardNo()).geteRank())
+				&& (h.getCardsInHand().get(eCardNo.FirstCard.getCardNo()).geteRank() != h.getCardsInHand()
+						.get(eCardNo.ThirdCard.getCardNo()).geteRank())
+				&& (h.getCardsInHand().get(eCardNo.FirstCard.getCardNo()).geteRank() != h.getCardsInHand()
+						.get(eCardNo.FourthCard.getCardNo()).geteRank())
+				&& (h.getCardsInHand().get(eCardNo.FirstCard.getCardNo()).geteRank() != h.getCardsInHand()
+						.get(eCardNo.FifthCard.getCardNo()).geteRank())) {
 			hs.setHandStrength(eHandStrength.HighCard.getHandStrength());
 			hs.setHiHand(h.getCardsInHand().get(eCardNo.FifthCard.getCardNo()).geteRank().getiRankNbr());
 			hs.setLoHand(0);
@@ -234,7 +276,7 @@ public class Hand {
 			kickers.add(h.getCardsInHand().get(eCardNo.FifthCard.getCardNo()));
 			hs.setKickers(kickers);
 
-		} 
+		}
 		return true;
 	}
 }
