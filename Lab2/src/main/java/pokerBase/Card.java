@@ -1,5 +1,6 @@
 package pokerBase;
-
+//Lab2 created by: Kevin Doak, Issac Chouri, and Victor Forman
+//Effort put in: Kevin 100%, Issac 100%, Victor 70%
 
 import java.util.Comparator;
 
