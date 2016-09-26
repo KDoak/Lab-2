@@ -118,17 +118,41 @@ public class Hand {
 		return bIsFlush;
 	}
 
-	public static boolean isHandStraight(Hand h, HandScore hs) {
+	public static boolean isHandStraight(ArrayList<Card> Cards, Card High) {
 
 		boolean bIsStraight = false;
-		if (h.getCardsInHand().get(eCardNo.FirstCard.getCardNo()).geteRank() < h.getCardsInHand()
-				.get(eCardNo.SecondCard.getCardNo()).geteRank() < h.getCardsInHand().get(eCardNo.ThirdCard.getCardNo())
-						.geteRank() < h.getCardsInHand().get(eCardNo.FourthCard.getCardNo()).geteRank() < h
-								.getCardsInHand().get(eCardNo.FifthCard.getCardNo()).geteRank()) {
-			bIsStraight = true;
-			hs.setHandStrength(eHandStrength.Straight.getHandStrength());
-			hs.setHiHand(h.getCardsInHand().get(eCardNo.FifthCard.getCardNo()).geteRank().getiRankNbr());
-			hs.setLoHand(0);
+		boolean ace = false;
+
+		int initial = 0;
+		High.seteRank(Cards.get(eCardNo.FirstCard.getCardNo()).geteRank());
+		High.seteSuit(Cards.get(eCardNo.FirstCard.getCardNo()).geteSuit());
+
+		if (Cards.get(eCardNo.FirstCard.getCardNo()).geteRank() == eRank.ACE) {
+			ace = true;
+			initial++;
+		}
+		
+		for (int i = initial; i < Cards.size() - 1; i++) {
+			if ((Cards.get(i).geteRank().getiRankNbr() - Cards.get(i + 1).geteRank().getiRankNbr()) == 1) {
+				bIsStraight = true;
+			} 
+			else {
+				bIsStraight = false;
+				break;
+			}
+		}
+		if ((ace == true) && (bIsStraight == true)) {
+			if (Cards.get(eCardNo.SecondCard.getCardNo()).geteRank() == eRank.KING) {
+				High.seteRank(Cards.get(eCardNo.FirstCard.getCardNo()).geteRank());
+				High.seteSuit(Cards.get(eCardNo.FirstCard.getCardNo()).geteSuit());
+			}
+			if (Cards.get(eCardNo.SecondCard.getCardNo()).geteRank() == eRank.FIVE) {
+				High.seteRank(Cards.get(eCardNo.SecondCard.getCardNo()).geteRank());
+				High.seteSuit(Cards.get(eCardNo.SecondCard.getCardNo()).geteSuit());
+			} 
+			else {
+				bIsStraight = false;
+			}
 		}
 
 		return bIsStraight;

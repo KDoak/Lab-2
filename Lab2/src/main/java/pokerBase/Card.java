@@ -26,6 +26,18 @@ public class Card  implements Comparable {
 		return eRank;
 	}
 
+	public void seteSuit(eSuit eSuit) {
+		this.eSuit = eSuit;
+	}
+
+	public void seteRank(eRank eRank) {
+		this.eRank = eRank;
+	}
+
+	public void setiCardNbr(int iCardNbr) {
+		this.iCardNbr = iCardNbr;
+	}
+
 	public int getiCardNbr() {
 		return iCardNbr;
 	}
@@ -47,6 +59,7 @@ public class Card  implements Comparable {
 	    return c.geteRank().compareTo(this.geteRank()); 
 
 	}
+
 
 	
 }
